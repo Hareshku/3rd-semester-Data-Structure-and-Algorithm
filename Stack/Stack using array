@@ -1,1 +1,61 @@
+public class Array_stack {
+    int size;
+    int peek;
+    int[] array=new int[size];
+    Array_stack(int size){
+        this.size=size;
+        array=new int[size];
+        peek=-1;
+    }
+
+    public void push(int data){
+        if(peek==size-1){
+            System.out.println("list is already full");
+        
+        }
+        array[++peek]=data;
+    }
+
+    public int pop(){
+        if(size==0)
+            System.out.println("stack is empty  ");
+        
+           return array[peek--]; 
+        }
+
+
+        public int peek(){
+            return array[peek];
+        }
+
+
+        public int[] Reverse(){
+            for(int i=0;i<array.length/2;i++){
+                int temp=array[i];
+                array[i]=array[array.length-i-1];
+                array[array.length-i-1]=temp;
+            }
+            return array;
+        }
+
+
+        public void Display(){
+            for(int i=peek; i>=0;i--){
+                System.out.print(array[i]+" ");
+            }
+        }
+    public static void main(String[] args) {
+        Array_stack object=new Array_stack(5);
+        int[] array={5,9,2,3,8};
+        for(int i=0;i<array.length;i++){
+            object.push(array[i]);
+        }
+        object.Display();
+        System.out.println();
+        object.array=object.Reverse();
+        System.out.println();
+        object.Display();
+    }
+}
+
 
