@@ -1,1 +1,58 @@
+// import java.util.*;
+
+// class Queue{
+//     int First,last=-1;
+//    static int size;
+//     int[] array;
+//     Queue(int size){
+//         array=new int[size];
+//     }
+
+//     public void  Enqueue(int data){
+//    if(last==-1){
+//     First=last=0;
+//     array[last++]=data;
+//    }
+//    else{
+//     //last=last+1;
+//     array[last++]=data;
+//    }
+//    size++;
+//     }
+
+//     public void dequeue(){
+//         if(last==-1){
+//             System.out.println("Queue is empty ");
+//         }
+//     else{
+//         First++;
+//           size--;
+//     }
+//     }
+     
+//     public int getSize(){
+//         return size;
+//     }
+//     public void display(){
+//         for(int i=First;i<array.length;i++){
+//             System.out.prObject(array[i]+" ");
+//         }
+//     }
+//     public static void main(String[] args) {
+//           Queue objQueue=new Queue(5);
+//           int[] array={1,2,3,4,5};
+//           for(int i=0;i<array.length;i++){
+//             objQueue.Enqueue(array[i]);
+//           }
+//           objQueue.display();
+//           System.out.println("\n"+objQueue.getSize());
+//           System.out.println();
+//           objQueue.dequeue();
+//           System.out.println();
+//           objQueue.display();
+//           System.out.println("\n"+objQueue.getSize());
+//     }
+// }
+
+
 
