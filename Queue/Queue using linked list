@@ -1,0 +1,194 @@
+
+import java.util.*;
+import java.util.concurrent.ThreadPoolExecutor.DiscardOldestPolicy;
+ class Queue{
+    Scanner sc=new Scanner(System.in);
+    private class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    public  Node first=null;
+    public  Node Last=null;
+
+   static int size;
+
+    public void insert(int data){
+        Node newNode=new Node(data);
+    if(first==null){
+        first=Last=newNode;
+        
+    }
+    else{
+        Node temp=first;
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        temp.next=newNode;
+        Last=newNode;
+    }
+    size++;
+    }
+
+     public int getSize(){
+        return size;
+     }
+    public int Delete(){
+        if(first==null){
+            System.out.println("Queue is empty");
+        }
+        
+            int data=first.data;
+            first=first.next;
+            return data;
+        
+    }
+    
+     public void update(){
+        System.out.println("enter the index");
+        int index =sc.nextInt();
+        System.out.println("enter the value");
+        int value=sc.nextInt();
+        int counter=0;
+        Node temNode=first;
+        while(temNode!=null){
+            counter++;
+            if(counter==index){
+                temNode.data=value;
+            }
+            temNode=temNode.next;
+        }
+     }
+
+    public void display(){
+        Node temp=first;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+    }
+
+    public Node Reverse(Node first){
+        if(first==null||first.next==null){
+            return first;
+        }
+        Node newhead=Reverse(first.next);
+        first.next.next=first;
+        first.next=null;
+        return newhead;
+    }
+
+    public boolean isEqual(Queue Q2){
+        if(size!=Q2.getSize())return false;
+
+        Node q1=first;
+        Node q2=Q2.first;
+        while(q1!=null){
+            if(q1.data!=q2.data){
+                return false;
+            }
+            q1=q1.next;
+            q2=q2.next;
+        }
+        return true;
+    }
+
+    public boolean Search(int value){
+
+        Node temNode=first;
+        while(temNode!=null){
+            if(temNode.data==value){
+             return true;
+            }
+         temNode=temNode.next;
+        }
+        return false ;
+    }
+
+
+   /*  public void merQueue(Queue Q2){
+         Queue mergedQueue=new Queue();
+         Node q1=this.first;
+         Node q2=Q2.first;
+         while(q1!=null|| Q2!=null){
+             if(q1!=null){
+                 mergedQueue.insert(q1.data);
+                 q1=q1.next;
+             }else{
+               mergedQueue.insert(q2.data);
+             }
+         }
+         Node q3=mergedQueue.first;
+         while(q3!=null){
+             System.out.print(q3.data);
+             q3=q3.next;
+         }
+     }
+*/
+       public Queue merge(Queue Q2) {
+        Queue mergedQueue = new Queue();
+        
+        Node temp1 = this.first;
+        Node temp2 = Q2.first;
+
+        while (temp1 != null && temp2 != null) {
+            if (temp1.data <= temp2.data) {
+                mergedQueue.insert(temp1.data);
+                temp1 = temp1.next;
+            } else {
+                mergedQueue.insert(temp2.data);
+                temp2 = temp2.next;
+            }
+        }
+
+        while (temp1 != null) {
+            mergedQueue.insert(temp1.data);
+            temp1 = temp1.next;
+        }
+
+        while (temp2 != null) {
+            mergedQueue.insert(temp2.data);
+            temp2 = temp2.next;
+        }
+
+        return mergedQueue;
+    }
+    
+
+
+    public static void main(String[] args) {
+        Queue Q1=new Queue();
+        Queue Q2=new Queue();
+        int[] array={1,2,3,4,5};
+        
+        for(int i=0;i<array.length;i++){
+            Q1.insert(array[i]);
+
+        }
+        
+        System.out.println();
+        int[] array1={1,2,3,4,5};
+        
+        for(int j=0;j<array1.length;j++){
+            Q2.insert(array1[j]);
+        }
+        
+         Q1.display();
+        System.out.println();
+        Q2.display();
+        boolean a=Q1.isEqual(Q2);
+        System.out.println(" "+a);
+        Q1.first=Q1.Reverse(Q1.first);
+        Q1.display(); 
+
+     Queue mergedQueue = Q1.merge(Q2);
+        mergedQueue.display();
+       
+    }
+ }
+
+
+
